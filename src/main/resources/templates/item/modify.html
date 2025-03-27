@@ -14,11 +14,76 @@
 <div class="container">
     <div class="row">
         <div class="col-2"></div>
-        <div class="col-8">
-
+        <div class="col-8"> <!-- 안에 내용이 문자 -->
+            <div class="text-center">
+                <h1 class="mt-3">상품 수정</h1>
+            </div>
+            <div>
+                <form th:action="@{/item/modify}" method="post" enctype="multipart/form-data">
+                    <div class="mb-3 mt-3">
+                        <label for="item" class="form-label">상품명:</label>
+                        <input type="text" class="form-control" id="item" name="item" th:value="${data.item}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="detail">상품내용:</label>
+                        <textarea class="form-control" rows="5" id="detail" name="detail" th:text="${data.detail}"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" name="img" th:value="${data.img}"> <!-- 엄청 중요!! 이전이미지 파일명을 기억 -->
+                        <img th:src="|/image/@{${data.img}}|" width="150" height="100"> <!-- 이전 이미지 환면출력용 -->
+                        <label for="imgFile" class="form-label">상품이미지:</label>
+                        <input type="file" class="form-control" id="imgFile" name="imgFile"> <!-- multipart 변수명 -->
+                    </div>
+                    <div class="row"><!-- 행 -->
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="price" class="form-label">가격:</label>
+                                <input type="number" class="form-control" id="price" name="price" th:value="${data.price}">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">재고량:</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" th:value="${data.quantity}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="state" class="form-label">상품상태:</label>
+                                <select class="form-select" id="state" name="state">
+                                    <option value="1" th:selected="${data.state==1}">신상품</option> <!-- 전달값은 value 선언 -->
+                                    <option value="2" th:selected="${data.state==2}">판매상품</option>
+                                    <option value="3" th:selected="${data.state==3}">이월상품</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="sale" class="form-label">세일정보:</label>
+                                <select class="form-select" id="sale" name="sale">
+                                    <option value="1" th:selected="${data.sale==1}">정상판매</option>
+                                    <option value="2" th:selected="${data.sale==2}">세일판매</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">상품수정</button>
+                </form>
+            </div><!-- 입력폼 -->
         </div><!-- 작업영역 끝 -->
         <div class="col-2"></div>
     </div><!-- row 끝 -->
 </div><!-- Container 끝 -->
 </body>
 </html>
+<!--
+객체정렬
+1. 문자(text) : text-정렬
+2. 객체(content) : justify-content-정렬 ※ 주의사항 ※ 반드시 d-flex 함께 사용해야한다.
+정렬
+start : 오른쪽
+center : 중앙
+end : 왼쪽
+-->

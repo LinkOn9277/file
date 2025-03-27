@@ -14,11 +14,72 @@
 <div class="container">
     <div class="row">
         <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-8"> <!-- 안에 내용이 문자 -->
+            <div class="text-center">
+                <h1 class="mt-3">상품 상세보기</h1>
+            </div>
+            <div>
 
+                    <div class="mb-3 mt-3">
+                        <P>상품명:<span th:text="${data.item}"></span></P>
+                    </div>
+                    <div class="mb-3">
+                        <p>상품내용:</p>
+                        <p th:text="${data.detail}"></p>
+                    </div>
+                    <div class="mb-3">
+                        <img th:src="|/image/@{${data.img}}|" width="350" height="200"> <!-- 이전 이미지 환면출력용 -->
+                    </div>
+                    <div class="row"><!-- 행 -->
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <p>가격:</p>
+                                <p th:value="${data.price}">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <p>재고량:</p>
+                                <p th:value="${data.quantity}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <p>상품상태:</p>
+                                <p>
+                                    <span th:if="${data.state==1}">신상품</span> <!-- 전달값은 value 선언 -->
+                                    <span th:if="${data.state==2}">판매상품</span>
+                                    <span th:if="${data.state==3}">이월상품</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <p>세일정보:</p>
+                                <p>
+                                    <span th:if="${data.sale==1}">정상판매</span>
+                                    <span th:if="${data.sale==2}">세일판매</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">상품수정</button>
+
+            </div><!-- 입력폼 -->
         </div><!-- 작업영역 끝 -->
         <div class="col-2"></div>
     </div><!-- row 끝 -->
 </div><!-- Container 끝 -->
 </body>
 </html>
+<!--
+객체정렬
+1. 문자(text) : text-정렬
+2. 객체(content) : justify-content-정렬 ※ 주의사항 ※ 반드시 d-flex 함께 사용해야한다.
+정렬
+start : 오른쪽
+center : 중앙
+end : 왼쪽
+-->

@@ -61,7 +61,7 @@ public class FileUpload {
      *********************************************************/
 
     public void FileDelete(String imgLocation , String imgFileName) {
-        String deleteFileName = imgLocation + imgFileName;
+        String deleteFileName = imgLocation + "/" + imgFileName;
 
         try {
             File deleteFile = new File(deleteFileName);
